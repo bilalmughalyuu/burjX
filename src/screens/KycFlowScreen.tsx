@@ -45,11 +45,8 @@ const KycFlowScreen = () => {
   const { application } = useSelector((s: RootState) => s.kyc);
 
   const [isLoading, setIsLoading] = useState(true);
-
-  // local flag to prevent overriding user navigation
   const [hydrated, setHydrated] = useState(false);
 
-  // STEP 1: load saved draft
   useEffect(() => {
     async function hydrate() {
       const draft = await loadKycDraft();
@@ -57,7 +54,6 @@ const KycFlowScreen = () => {
       if (draft) {
         dispatch(hydrateKyc(draft));
 
-        // ONLY ON APP START → force correct step
         const step = getStepFromData(draft);
         dispatch(setCurrentStep(step));
       }
@@ -69,7 +65,6 @@ const KycFlowScreen = () => {
     hydrate();
   }, []);
 
-  // STEP 2: persist changes
   useEffect(() => {
     if (!hydrated) return;
     saveKycDraft(application);
