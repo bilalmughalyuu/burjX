@@ -8,11 +8,11 @@ export const isPersonalInfoComplete = (app: KycApplication) => {
   );
 };
 
-export const isAddressComplete = (app: any) => {
+export const isAddressComplete = (app: KycApplication) => {
   return !!(app.address?.country && app.address?.city && app.address?.line1);
 };
 
-export const isDocumentComplete = (app: any) => {
+export const isDocumentComplete = (app: KycApplication) => {
   return !!(app.document?.type && app.document?.documentNumber);
 };
 
