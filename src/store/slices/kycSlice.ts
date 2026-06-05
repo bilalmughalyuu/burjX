@@ -51,7 +51,6 @@ const kycSlice = createSlice({
 
       state.application.status = 'draft';
       state.application.updatedAt = new Date().toISOString();
-      console.log('Application:', { ...state.application });
     },
     updateAddress: (state, action: PayloadAction<Partial<Address>>) => {
       state.application.address = {
@@ -65,7 +64,6 @@ const kycSlice = createSlice({
 
       state.application.status = 'draft';
       state.application.updatedAt = new Date().toISOString();
-      console.log('Application:', { ...state.application });
     },
     updateDocument: (state, action: PayloadAction<Partial<KycDocument>>) => {
       state.application.document = {
@@ -78,14 +76,6 @@ const kycSlice = createSlice({
 
       state.application.status = 'draft';
       state.application.updatedAt = new Date().toISOString();
-
-      console.log(
-        'Application:',
-        JSON.parse(JSON.stringify(state.application)),
-      );
-    },
-    setApplication: (state, action: PayloadAction<KycApplication>) => {
-      state.application = action.payload;
     },
     resetKyc: state => {
       state.application = {
@@ -102,7 +92,6 @@ export const {
   updatePersonalInfo,
   updateAddress,
   updateDocument,
-  setApplication,
   resetKyc,
 } = kycSlice.actions;
 
